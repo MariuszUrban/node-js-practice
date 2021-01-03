@@ -6,8 +6,13 @@ const questions = [
     "what you'll dou with node"
 ]
 
-collectAnswers(questions, answers => {
+const answerEvents = collectAnswers(questions); 
+
+answerEvents.on("answer", answer => console.log(`question answered: ${answer}`));
+
+answerEvents.on("complete", answers => {
     console.log('thank you for your answer');
     console.log("🚀 ~ answers", answers);
-    process.exit();
-}); 
+})
+
+answerEvents.on("complete", () => process.exit() )
